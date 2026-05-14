@@ -14,7 +14,7 @@
 
 ### SM-F02: Limpar carrinho ao fazer logout
 
-**Problema:** O carrinho persiste na chave `cart-contents` do `localStorage` após o logout e é restaurado ao fazer login novamente na mesma sessão (BUG-008). Em dispositivos compartilhados, um usuário pode visualizar itens adicionados por uma sessão anterior.
+**Problema:** O carrinho persiste na chave `cart-contents` do `localStorage` após o logout e é restaurado ao fazer login novamente na mesma sessão do browser (BUG-008). Em dispositivos compartilhados, um usuário pode visualizar itens adicionados por uma sessão anterior.
 
 **Sugestão:** Limpar a chave `cart-contents` do `localStorage` durante o processo de logout, garantindo privacidade entre sessões distintas.
 
@@ -29,7 +29,6 @@
 **Sugestão:**
 - Validar formato por país (ex.: Brasil: `XXXXX-XXX`, EUA: `XXXXX` ou `XXXXX-XXXX`)
 - Exibir mensagem de erro específica para formato inválido
-- Considerar integração com API de CEP (ex.: ViaCEP) para preenchimento automático de endereço
 
 ---
 
@@ -37,10 +36,9 @@
 
 **Problema:** Existe apenas ordenação, não há filtros por categoria ou faixa de preço.
 
-**Sugestão:** Adicionar painel de filtros lateral com:
+**Sugestão:** Adicionar painel de filtros com:
 - Filtro por categoria (apparel, accessories, etc.)
-- Filtro por faixa de preço (slider ou checkboxes)
-- Combinação de múltiplos filtros
+- Filtro por faixa de preço
 
 ---
 
@@ -60,7 +58,7 @@
 
 **Problema:** Não há mecanismo de busca por nome ou descrição de produto.
 
-**Sugestão:** Adicionar campo de busca no header da página de inventário, com filtro em tempo real (client-side) ou via API.
+**Sugestão:** Adicionar campo de busca no header da página de inventário, com filtro em tempo real.
 
 ---
 
@@ -90,44 +88,6 @@
 **Sugestão:**
 - Auditar paleta de cores com ferramentas como Colour Contrast Analyser
 - Ajustar cores de texto secundário, placeholders e botões desabilitados
-- Adicionar modo de alto contraste (prefers-contrast media query)
-
----
-
-### SM-A03: Adicionar `aria-live` para feedback dinâmico
-
-**Problema:** Mudanças dinâmicas (badge do carrinho, mensagens de erro) não são anunciadas por leitores de tela.
-
-**Sugestão:**
-```html
-<span class="shopping_cart_badge" aria-live="polite" aria-label="Itens no carrinho: 3">3</span>
-```
-
----
-
-### SM-A04: Links externos com indicação visual e atributos corretos
-
-**Problema:** Link "About" abre saucelabs.com na mesma aba sem aviso ao usuário.
-
-**Sugestão:**
-```html
-<a href="https://saucelabs.com" target="_blank" rel="noopener noreferrer" 
-   aria-label="About Sauce Labs (abre em nova aba)">
-  About
-  <span class="sr-only">(abre em nova aba)</span>
-</a>
-```
-
----
-
-### SM-A05: Skip link para conteúdo principal
-
-**Problema:** Usuários de teclado precisam navegar por todo o header em cada página.
-
-**Sugestão:** Adicionar link "Pular para o conteúdo" como primeiro elemento focável:
-```html
-<a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
-```
 
 ---
 
@@ -135,7 +95,7 @@
 
 ### SM-U01: Confirmação antes de finalizar compra
 
-**Problema:** Clique acidental em "Finish" finaliza a compra sem confirmação (BUG-008).
+**Problema:** Clique acidental em "Finish" finaliza a compra sem confirmação.
 
 **Sugestão:** Exibir modal de confirmação antes de finalizar, com resumo do valor total e opções de cancelar ou confirmar.
 
@@ -160,25 +120,7 @@
 
 ### SM-S01: Rate limiting no login
 
-**Sugestão:** Implementar bloqueio temporário após N tentativas falhas de login (ex.: 5 tentativas em 15 minutos), com CAPTCHA opcional.
-
----
-
-### SM-S02: Tokens CSRF nos formulários
-
-**Sugestão:** Adicionar tokens CSRF em todos os formulários POST para prevenir ataques de Cross-Site Request Forgery.
-
----
-
-### SM-S03: Headers de segurança HTTP
-
-**Sugestão:** Implementar headers de segurança:
-```
-Content-Security-Policy: default-src 'self'
-X-Frame-Options: DENY
-X-Content-Type-Options: nosniff
-Strict-Transport-Security: max-age=31536000
-```
+**Sugestão:** Implementar bloqueio temporário após N tentativas falhas de login (ex.: 5 tentativas em 15 minutos), para dificultar ataques de força bruta.
 
 ---
 
@@ -192,16 +134,7 @@ Strict-Transport-Security: max-age=31536000
 
 ---
 
-### SM-Q02: Implementar API para testes de integração
-
-**Sugestão:** Expor endpoints de API para setup/teardown de estado de testes, permitindo:
-- Reset de carrinho via API
-- Criação de usuários de teste programaticamente
-- Verificação de estado do servidor
-
----
-
-### SM-Q03: Adicionar variável de ambiente para URL base
+### SM-Q02: Adicionar variável de ambiente para URL base
 
 **Sugestão:** Permitir configuração da URL base via variável de ambiente para facilitar testes em diferentes ambientes (dev, staging, prod):
 ```bash
@@ -217,12 +150,14 @@ BASE_URL=https://staging.saucedemo.com npx playwright test
 | SM-A01 | Headings semânticos | Baixo | Médio | 🔴 Alta |
 | SM-A02 | Contraste de cores | Médio | Alto | 🔴 Alta |
 | SM-F03 | Validação CEP | Baixo | Alto | 🔴 Alta |
+| SM-F02 | Limpar carrinho no logout | Baixo | Alto | 🔴 Alta |
 | SM-F05 | Toast notification | Baixo | Médio | 🟡 Média |
-| SM-A03 | aria-live dinâmico | Baixo | Médio | 🟡 Média |
 | SM-F01 | Quantidade no carrinho | Médio | Alto | 🟡 Média |
 | SM-U01 | Confirmação de compra | Baixo | Médio | 🟡 Média |
-| SM-A05 | Skip link | Baixo | Baixo | 🟢 Baixa |
-| SM-F02 | Limpar carrinho no logout | Baixo | Alto | 🔴 Alta |
+| SM-S01 | Rate limiting | Médio | Alto | 🟡 Média |
+| SM-U03 | Página de erro amigável | Baixo | Médio | 🟡 Média |
 | SM-F04 | Filtros de categoria | Alto | Médio | 🟢 Baixa |
 | SM-F06 | Busca de produtos | Alto | Médio | 🟢 Baixa |
-| SM-S01 | Rate limiting | Médio | Alto | 🟡 Média |
+| SM-U02 | Histórico de pedidos | Alto | Médio | 🟢 Baixa |
+| SM-Q01 | Atributos data-test | Baixo | Baixo | 🟢 Baixa |
+| SM-Q02 | Variável de ambiente | Baixo | Baixo | 🟢 Baixa |
