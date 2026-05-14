@@ -18,7 +18,7 @@
 
 **Sugestão:** Limpar a chave `cart-contents` do `localStorage` durante o processo de logout, garantindo privacidade entre sessões distintas.
 
-**Impacto:** Melhoria de privacidade e segurança, especialmente em dispositivos compartilhados.
+**Impacto:** Melhoria de privacidade, especialmente em dispositivos compartilhados.
 
 ---
 
@@ -62,36 +62,7 @@
 
 ---
 
-## 2. Melhorias de Acessibilidade (WCAG 2.1)
-
-### SM-A01: Usar elementos semânticos para títulos de página
-
-**Problema:** O título "Products" usa `<span class="title">` em vez de `<h1>`.
-
-**Sugestão:**
-```html
-<!-- Atual -->
-<span class="title">Products</span>
-
-<!-- Proposto -->
-<h1 class="title">Products</h1>
-```
-
-**Referência:** WCAG 2.1 — Critério 1.3.1 (Info and Relationships)
-
----
-
-### SM-A02: Melhorar contraste de cores
-
-**Problema:** Alguns elementos não atingem proporção de contraste mínima de 4.5:1 (WCAG AA).
-
-**Sugestão:**
-- Auditar paleta de cores com ferramentas como Colour Contrast Analyser
-- Ajustar cores de texto secundário, placeholders e botões desabilitados
-
----
-
-## 3. Melhorias de UX/UI
+## 2. Melhorias de UX/UI
 
 ### SM-U01: Confirmação antes de finalizar compra
 
@@ -116,15 +87,7 @@
 
 ---
 
-## 4. Melhorias de Segurança
-
-### SM-S01: Rate limiting no login
-
-**Sugestão:** Implementar bloqueio temporário após N tentativas falhas de login (ex.: 5 tentativas em 15 minutos), para dificultar ataques de força bruta.
-
----
-
-## 5. Melhorias de Qualidade do Código / Testabilidade
+## 3. Melhorias de Qualidade do Código / Testabilidade
 
 ### SM-Q01: Manter atributos `data-test` em todos os elementos interativos
 
@@ -134,18 +97,15 @@
 
 ---
 
-## 6. Priorização das Melhorias
+## 4. Priorização das Melhorias
 
 | ID | Sugestão | Esforço | Impacto | Prioridade |
 |----|---------|---------|---------|-----------|
-| SM-A01 | Headings semânticos | Baixo | Médio | 🔴 Alta |
-| SM-A02 | Contraste de cores | Médio | Alto | 🔴 Alta |
 | SM-F03 | Validação CEP | Baixo | Alto | 🔴 Alta |
 | SM-F02 | Limpar carrinho no logout | Baixo | Alto | 🔴 Alta |
 | SM-F05 | Toast notification | Baixo | Médio | 🟡 Média |
 | SM-F01 | Quantidade no carrinho | Médio | Alto | 🟡 Média |
 | SM-U01 | Confirmação de compra | Baixo | Médio | 🟡 Média |
-| SM-S01 | Rate limiting | Médio | Alto | 🟡 Média |
 | SM-U03 | Página de erro amigável | Baixo | Médio | 🟡 Média |
 | SM-F04 | Filtros de categoria | Alto | Médio | 🟢 Baixa |
 | SM-F06 | Busca de produtos | Alto | Médio | 🟢 Baixa |
