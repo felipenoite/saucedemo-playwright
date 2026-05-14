@@ -1,0 +1,31 @@
+{
+  "name": "playwright-saucedemo",
+  "version": "1.0.0",
+  "description": "Playwright E2E tests for Sauce Demo e-commerce platform",
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:mobile": "playwright test tests/responsiveness/ --project=mobile-chrome --project=mobile-safari",
+    "test:level1": "playwright test tests/auth/ tests/products/ tests/cart/ tests/checkout/ tests/navigation/",
+    "test:level2": "playwright test tests/responsiveness/ tests/accessibility/",
+    "test:auth": "playwright test tests/auth/",
+    "test:products": "playwright test tests/products/",
+    "test:cart": "playwright test tests/cart/",
+    "test:checkout": "playwright test tests/checkout/",
+    "test:navigation": "playwright test tests/navigation/",
+    "test:accessibility": "playwright test tests/accessibility/",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "keywords": ["playwright", "e2e", "testing", "saucedemo", "qa"],
+  "author": "Felipe Noite <felipe.a.noite@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0"
+  }
+}
