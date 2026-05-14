@@ -47,10 +47,11 @@ O projeto segue o padrão **Page Object Model (POM)** para separar a lógica dos
 
 ## Instalação
 
-### 1. Clonar o repositório (ou descompactar o projeto)
+### 1. Clonar o repositório
 
 ```bash
-cd playwright-saucedemo
+git clone https://github.com/felipenoite/saucedemo-playwright.git
+cd saucedemo-playwright
 ```
 
 ### 2. Instalar dependências
