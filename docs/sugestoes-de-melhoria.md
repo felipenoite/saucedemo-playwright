@@ -134,15 +134,6 @@
 
 ---
 
-### SM-Q02: Adicionar variável de ambiente para URL base
-
-**Sugestão:** Permitir configuração da URL base via variável de ambiente para facilitar testes em diferentes ambientes (dev, staging, prod):
-```bash
-BASE_URL=https://staging.saucedemo.com npx playwright test
-```
-
----
-
 ## 6. Priorização das Melhorias
 
 | ID | Sugestão | Esforço | Impacto | Prioridade |
@@ -160,4 +151,3 @@ BASE_URL=https://staging.saucedemo.com npx playwright test
 | SM-F06 | Busca de produtos | Alto | Médio | 🟢 Baixa |
 | SM-U02 | Histórico de pedidos | Alto | Médio | 🟢 Baixa |
 | SM-Q01 | Atributos data-test | Baixo | Baixo | 🟢 Baixa |
-| SM-Q02 | Variável de ambiente | Baixo | Baixo | 🟢 Baixa |
